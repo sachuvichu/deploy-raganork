@@ -1,7 +1,18 @@
-FROM quay.io/souravkl11/rgnk-v2:latest
+FROM node:lts-buster
 
-RUN git clone https://github.com/Kiranxer/neeli- /root/neeli-
-WORKDIR /root/neeli-
-ENV TZ=Asia/Kolkata
-RUN yarn install --network-concurrency 1
+RUN git clone https://github.com/Kiranxer/Neeli-/ /root/Neeli-
+
+WORKDIR /root/Neeli-
+
+RUN apt-get update && \
+  apt-get install -y \
+  ffmpeg \
+  imagemagick \
+  webp && \
+  apt-get upgrade -y && \
+  rm -rf /var/lib/apt/lists/*
+
+RUN npm install
+
+
 CMD ["node", "index.js"]
