@@ -1,18 +1,6 @@
-FROM node:lts-buster
+FROM quay.io/souravkl11/rgnk-v3:latest
 
-RUN git clone https://github.com/Kiranxer/Neeli-/ /root/Neeli-
-
-WORKDIR /root/Neeli-
-
-RUN apt-get update && \
-  apt-get install -y \
-  ffmpeg \
-  imagemagick \
-  webp && \
-  apt-get upgrade -y && \
-  rm -rf /var/lib/apt/lists/*
-
-RUN npm install
-
-
+RUN git clone https://github.com/souravkl11/raganork-md /railway/Raganork
+WORKDIR /railway/Raganork
+RUN yarn install --network-concurrency 1
 CMD ["node", "index.js"]
